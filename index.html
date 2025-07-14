@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donate | Palestine Relief</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body, html { height: 100%; font-family: Arial, sans-serif; color: #fff; background: #000; }
+
+    .bg-video {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover; z-index: -1; opacity: 0.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #c0392b, #e74c3c);
+      color: white; padding: 20px; text-align: center;
+    }
+    header img { height: 60px; margin-bottom: 10px; }
+    header h1 { font-size: 30px; margin: 0; }
+
+    .mission {
+      text-align: center;
+      background: rgba(255,255,255,0.1);
+      padding: 15px 25px;
+      font-size: 16px;
+      margin: 0 auto;
+    }
+
+    .overlay {
+      display: flex; justify-content: center; align-items: center;
+      padding: 30px;
+    }
+
+    .container {
+      background: rgba(0,0,0,0.75);
+      max-width: 600px; width: 100%;
+      padding: 30px; border-radius: 10px;
+    }
+
+    h2 { text-align: center; margin-bottom: 20px; color: #f0f0f0; }
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    input, select, button {
+      width: 100%; padding: 12px; margin-top: 6px;
+      border: none; border-radius: 6px;
+    }
+
+    input, select {
+      background: rgba(255,255,255,0.95); color: #333;
+    }
+
+    button {
+      background: #27ae60; color: #fff;
+      font-size: 16px; cursor: pointer; margin-top: 25px;
+    }
+
+    button:hover { background: #219150; }
+
+    .note {
+      background: rgba(255,255,255,0.1);
+      padding: 12px; margin-bottom: 15px;
+      border-left: 5px solid #f39c12;
+    }
+
+    .toggle-options { margin-top: 20px; }
+    .toggle-options label {
+      display: block; margin-bottom: 8px;
+    }
+
+    .section { display: none; margin-top: 15px; }
+
+    .crypto-box {
+      background: rgba(255,255,255,0.1); padding: 10px;
+      border-left: 4px solid #bdc3c7; margin-bottom: 10px;
+    }
+
+    .footer {
+      text-align: center; margin-top: 30px;
+      font-size: 14px; color: #ccc;
+    }
+
+    .modal {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%; background: rgba(0,0,0,0.85);
+      justify-content: center; align-items: center;
+      color: #fff; text-align: center; padding: 20px; z-index: 1000;
+    }
+
+    .modal-content {
+      background: #111; padding: 30px;
+      border-radius: 10px; max-width: 500px;
+    }
+
+    .modal-content button {
+      margin-top: 20px; width: auto;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Background Video -->
+<video class="bg-video" autoplay muted loop>
+  <source src="gaza-background-mute.mp4" type="video/mp4" />
+</video>
+
+<!-- Header -->
+<header>
+  <img src="http://palestinercs.org/public/files/image/officialLogo.png" alt="Palestine Relief Logo" />
+  <h1>Palestine Red Crescent Society</h1>
+</header>
+
+<!-- Mission Statement -->
+<div class="mission">
+  The Palestine Red Crescent Society provides humanitarian aid, medical services, and relief to Palestinians in need. Your support directly helps children and families affected by crisis.
+</div>
+
+<!-- Form Section -->
+<div class="overlay">
+  <div class="container">
+    <h2>Make a Difference</h2>
+
+    <div class="note">
+      Every donation helps provide vital food, shelter, and care to families in Gaza. Thank you for your kindness.
+    </div>
+
+    <form id="donationForm" action="https://formspree.io/f/xqalzeog" method="POST">
+      <label for="name">Full Name*</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email*</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="phone">Phone (Optional)</label>
+      <input type="tel" id="phone" name="phone" />
+
+      <label for="amount">Donation Amount</label>
+      <select id="amount" name="amount">
+        <option value="">Select amount</option>
+        <option value="50">$50</option>
+        <option value="100">$100</option>
+        <option value="250">$250</option>
+        <option value="500">$500</option>
+        <option value="1000">$1000</option>
+        <option value="custom">Custom Amount</option>
+      </select>
+
+      <input type="number" id="customAmount" name="customAmount" placeholder="Enter custom amount (USD)" style="display: none;" min="1"/>
+
+      <div class="toggle-options">
+        <label><input type="checkbox" id="togglePayPal" /> I’d like to donate via PayPal</label>
+        <label><input type="checkbox" id="toggleCrypto" /> I’d like to donate with Crypto</label>
+      </div>
+
+      <div class="section" id="paypalSection">
+        <div id="paypal-button-container"></div>
+      </div>
+
+      <div class="section" id="cryptoSection">
+        <div class="crypto-box"><strong>Bitcoin (BTC):</strong><br><code>YOUR_BTC_ADDRESS</code></div>
+        <div class="crypto-box"><strong>Tether (USDT-TRC20):</strong><br><code>YOUR_USDT_ADDRESS</code></div>
+      </div>
+
+      <button type="submit">Submit Information</button>
+    </form>
+
+    <p class="footer">&copy; 2025 Palestine Relief | All Rights Reserved</p>
+  </div>
+</div>
+
+<!-- Thank You Modal -->
+<div id="thankyouModal" class="modal">
+  <div class="modal-content">
+    <h3>Thank You for Your Donation!</h3>
+    <p>Your support means the world. We will be in touch shortly.</p>
+    <button onclick="document.getElementById('thankyouModal').style.display='none'">Close</button>
+  </div>
+</div>
+
+<!-- PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
+
+<script>
+  // Show/hide PayPal & crypto sections
+  document.getElementById('togglePayPal').onchange = e =>
+    document.getElementById('paypalSection').style.display = e.target.checked ? 'block' : 'none';
+
+  document.getElementById('toggleCrypto').onchange = e =>
+    document.getElementById('cryptoSection').style.display = e.target.checked ? 'block' : 'none';
+
+  // Handle custom amount display
+  const amountSelect = document.getElementById('amount');
+  const customAmountInput = document.getElementById('customAmount');
+
+  amountSelect.addEventListener('change', () => {
+    if (amountSelect.value === 'custom') {
+      customAmountInput.style.display = 'block';
+      customAmountInput.required = true;
+    } else {
+      customAmountInput.style.display = 'none';
+      customAmountInput.required = false;
+    }
+  });
+
+  // PayPal buttons
+  paypal.Buttons({
+    createOrder: (data, actions) => {
+      let amount = amountSelect.value === 'custom'
+        ? customAmountInput.value
+        : amountSelect.value;
+
+      if (!amount || parseFloat(amount) < 1) {
+        alert('Please select or enter a valid amount.');
+        return;
+      }
+      return actions.order.create({
+        purchase_units: [{
+          amount: { value: amount }
+        }]
+      });
+    },
+    onApprove: (data, actions) => {
+      return actions.order.capture().then(details => {
+        showThankYou();
+      });
+    }
+  }).render('#paypal-button-container');
+
+  // Form submission
+  const form = document.getElementById('donationForm');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    // Validate amount if selected
+    let amount = amountSelect.value === 'custom'
+      ? customAmountInput.value
+      : amountSelect.value;
+
+    if (amount && amount !== '' && parseFloat(amount) < 50) {
+      alert('Minimum donation amount is $50.');
+      return;
+    }
+
+    // If no PayPal selected, just submit form normally via Formspree
+    if (!document.getElementById('togglePayPal').checked) {
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          showThankYou();
+          form.reset();
+          customAmountInput.style.display = 'none';
+        } else {
+          alert('Submission failed. Please try again.');
+        }
+      }).catch(() => alert('Submission failed. Please check your internet connection.'));
+    }
+  });
+
+  function showThankYou() {
+    document.getElementById('thankyouModal').style.display = 'flex';
+  }
+</script>
+
+</body>
+</html>

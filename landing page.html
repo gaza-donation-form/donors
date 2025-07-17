@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donate | Palestine Relief</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: #111;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .bg-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.8));
+      z-index: -1;
+    }
+
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 50px 15px 40px;
+    }
+
+    .hero-logo {
+      width: 280px;
+      margin-bottom: 30px;
+    }
+
+    .hero h1 {
+      font-size: 2.6em;
+      max-width: 750px;
+      line-height: 1.3;
+      margin-bottom: 15px;
+    }
+
+    .hero blockquote {
+      font-style: italic;
+      font-size: 1.15em;
+      max-width: 560px;
+      color: #ddd;
+      margin-bottom: 25px;
+    }
+
+    .cta-button {
+      background: #e63946;
+      color: #fff;
+      padding: 14px 36px;
+      font-size: 1.2em;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: #c5303a;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      padding: 40px 15px 30px;
+      background: #111;
+    }
+
+    .gallery img {
+      width: 100%;
+      max-width: 430px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    .mission, .progress-section, .contact-section {
+      padding: 40px 15px;
+      text-align: center;
+      background: #c22b39;
+    }
+
+    .mission h2, .progress-section h2, .contact-section h2 {
+      font-size: 2em;
+      margin-bottom: 15px;
+    }
+
+    .mission p, .contact-section p {
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+    .progress-bar-container {
+      width: 75%;
+      max-width: 560px;
+      margin: 15px auto;
+      background: #7b1f29;
+      height: 28px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .progress-bar {
+      width: 20%;
+      background: #97e5a8;
+      height: 100%;
+      transition: width 0.5s ease;
+    }
+
+    .progress-text {
+      margin-top: 8px;
+      font-size: 1.05em;
+      color: #eee;
+    }
+
+    .contact-links {
+      margin-top: 20px;
+    }
+
+    .contact-links a {
+      display: inline-block;
+      margin: 10px 15px;
+      padding: 12px 20px;
+      background-color: #fff;
+      color: #c22b39;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .contact-links a:hover {
+      background-color: #f2f2f2;
+      color: #a11c2d;
+    }
+
+    footer {
+      background: #111;
+      padding: 25px 15px;
+      text-align: center;
+      font-size: 0.95em;
+      color: #bbb;
+    }
+
+    .social-icons {
+      margin: 15px 0;
+    }
+
+    .social-icons a {
+      color: #bbb;
+      margin: 0 10px;
+      font-size: 1.4em;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 1.8em;
+      }
+      .hero-logo {
+        width: 200px;
+      }
+      .cta-button {
+        font-size: 1em;
+        padding: 12px 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎥 Background Video -->
+  <video class="bg-video" autoplay muted loop playsinline preload="auto">
+    <source src="https://raw.githubusercontent.com/gaza-donation-form/videosbackground-/main/gazakids.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <div class="overlay"></div>
+
+  <!-- 🌟 Hero -->
+  <section class="hero">
+    <img class="hero-logo" src="http://palestinercs.org/public/files/image/officialLogo.png" alt="Palestine Red Crescent Society Logo" />
+    <h1>Be the Reason Hope Lives On in Gaza</h1>
+    <blockquote>“Every donation helps provide vital food, shelter, and care to families in Gaza. Thank you for your kindness.”</blockquote>
+    <a href="https://gaza-donation-form.github.io/donors/" class="cta-button" target="_blank">Donate Now</a>
+  </section>
+
+  <!-- 📸 Gallery -->
+  <div class="gallery">
+    <img src="https://i.imgur.com/3B8OXw0.jpeg" alt="Child receiving food in Gaza" />
+    <img src="https://i.imgur.com/xINbFxA.jpeg" alt="Water distribution in Gaza" />
+    <img src="https://i.imgur.com/GOcUHGw.png" alt="Medical aid for Gaza families" />
+    <img src="https://i.imgur.com/PgZOcbt.png" alt="Winter relief supplies in Gaza" />
+  </div>
+
+  <!-- 🙌 Mission -->
+  <div class="mission">
+    <h2>Our Mission</h2>
+    <p>The Palestine Red Crescent Society delivers critical medical aid, shelter, and humanitarian relief to children and families suffering under conflict in Gaza. Your support brings lifesaving care and dignity to those who need it most.</p>
+  </div>
+
+  <!-- 📊 Progress -->
+  <div class="progress-section">
+    <h2>Campaign Goal: $500,000</h2>
+    <div class="progress-bar-container">
+      <div class="progress-bar"></div>
+    </div>
+    <p class="progress-text">$100,000 raised so far</p>
+  </div>
+
+  <!-- 📬 Contact -->
+  <div class="contact-section">
+    <h2>Contact Us</h2>
+    <p>We’d love to hear from you. Reach out to us via WhatsApp or email.</p>
+    <div class="contact-links">
+      <a href="https://wa.me/1234567890" target="_blank">📱 WhatsApp</a>
+      <a href="mailto:palestinerelief@example.com">✉️ Email Us</a>
+    </div>
+  </div>
+
+  <!-- 🧭 Footer -->
+  <footer>
+    <div class="social-icons">
+      <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>&copy; 2025 Palestine Relief. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
